@@ -18,30 +18,98 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
     <style>
       /*sınıf aktif olunca koyu mod classları*/
-      body.dark {
-        background-color: black;
-        color: white;
-      }
 
-      body.dark .btn {
+      .dark #btndark {
         background-color: white;
         color: black;
+      }
+
+      .dark .contect-api .btn {
+        background-color: black;
+        color: white;
         border: none !important;
       }
 
-      body.dark label {
-        background-color: white !important;
+      .dark label {
+        background-color: black !important;
+        color: white !important;
+      }
+
+      .dark .contect-api {
+        background-color: white;
+      }
+
+      .dark #liveToast i {
         color: black !important;
       }
 
-      body.dark .contect-api {
-        border: 0.5px solid white !important;
+      .dark #liveToast strong {
+        color: white !important;
+        background-color: black !important;
+      }
+
+      .dark #liveToast p {
+        color: black !important;
+      }
+
+      @media (max-width: 400px) {
+        .contect-api {
+          width: 300px;
+        }
+        .contect-api iframe {
+          width: 250px;
+        }
+      }
+      .contect-api {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+          rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+      }
+      body {
+        height: 100vh;
+        background-image: url(weather-img.jpg);
+        background-size: cover;
+        background-position: center center;
       }
     </style>
   </head>
   <body>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <i class="fa-solid fa-info fa-fade text-primary m-2 fs-5"></i>
+          <strong class="me-auto text-white bg-primary rounded-2 p-1"
+            >Bilgilendirme</strong
+          >
+          <button
+            id="livetoastbtn"
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body text-center">
+          <p class="text-primary">Kısayollar Hakkında</p>
+          <p class="text-primary">1-Dark Mode: D</p>
+          <p class="text-primary">2-Hava Durumu Bilgisini Sıfırlama: Delete</p>
+          <p class="text-primary">3-Hava Durumu Sonuçlarını Getirme: Enter</p>
+        </div>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-start p-2">
       <button class="btn btn-dark" id="btndark">
         <i class="fa-solid fa-circle-half-stroke"></i>
@@ -49,9 +117,9 @@
     </div>
     <div
       class="d-flex justify-content-center align-items-center"
-      style="height: 99vh"
+      style="height: 92vh"
     >
-      <div class="contect-api p-4 border border-primary rounded-4">
+      <div class="contect-api p-4 rounded-4">
         <div class="mb-2">
           <label
             for="ApiCity"
@@ -60,13 +128,13 @@
           >
           <input type="text" id="ApiValue" class="form-control mt-2" />
           <button
+            title="Hava Durumu Sonuçlarını Getir."
             type="button"
             class="btn btn-primary mt-2 w-100"
             id="btnapiget"
           >
             <i class="fa-solid fa-magnifying-glass"></i> Ara
           </button>
-          <!--w-100 kutu genişligi kadar satırı kapladı-->
         </div>
         <iframe
           src=""

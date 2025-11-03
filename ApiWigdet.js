@@ -2,9 +2,18 @@ const btnapi = document.querySelector("#btnapiget");
 const valapicity = document.querySelector("#ApiValue");
 const widget = document.querySelector("#ApiWigdetWeather");
 const btndrk = document.querySelector("#btndark");
+const toastlive = document.querySelector("#liveToast");
+const livebtn = document.querySelector("#livetoastbtn");
+
+setTimeout(() => {
+  const t = new bootstrap.Toast(toastlive, {
+    autohide: false,
+  });
+  t.show();
+},2000);
 
 let jsondata = {};
-fetch("weatherData.json") // Api ile dizinde bulunan dosya içerigi okuma
+fetch("weatherData.json")
   .then((res) => res.json())
   .then((data) => {
     jsondata = data;
@@ -19,15 +28,28 @@ btndrk.addEventListener("click", () => {
 });
 valapicity.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    ApiGetWeatherControl();
+     btnapi.click()
   }
-  if (e.key === "Escape") {
+  if (e.key === "Delete") {
+    widget.src = "";
     valapicity.value = "";
   }
-  if (e.key === "Home") {
-    navigator.clipboard.writeText(valapicity.value.trim());
+});
+
+document.body.addEventListener("keydown", (e) => {
+  if (e.key === "Delete") {
+    widget.src = "";
+    valapicity.value = "";
+    valcontrol();
+  }
+  if (e.key === "D") {
+    btndrk.click();
+  }
+  if (e.key === "Escape") {
+    livebtn.click();
   }
 });
+
 function valcontrol() {
   const val = valapicity.value.trim();
   if (val === "") {
@@ -50,9 +72,7 @@ function ApiGetWeatherControl() {
     );
 
     if (!cityEntry) {
-      alert(
-        `${val} Şehrine Ait Herhangi Bir Hava Durumu Kaydı Bulunmamaktadır.`
-      );
+      alert(`${val} Şehrine Ait Herhangi Bir Hava Durumu Kaydı Bulunamadı.`);
       return;
     }
 
