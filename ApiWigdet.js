@@ -21,10 +21,12 @@ fetch("weatherData.json")
   .catch((ee) => alert("Dosya Okunurken Hata Oluştu: " + ee.message));
 
 document.addEventListener("DOMContentLoaded", valcontrol);
+document.addEventListener("DOMContentLoaded", ControlTheme);
 valapicity.addEventListener("keyup", valcontrol);
 btnapi.addEventListener("click", ApiGetWeatherControl);
 btndrk.addEventListener("click", () => {
   document.body.classList.toggle("dark");
+  localStorage.setItem("theme","dark");
 });
 valapicity.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
@@ -59,6 +61,12 @@ function valcontrol() {
   }
 }
 
+function ControlTheme(){
+  if(localStorage.getItem("theme") === "dark"){
+     document.body.classList.toggle("dark"); 
+  } 
+}
+
 function ApiGetWeatherControl() {
   const val = valapicity.value.trim().toLowerCase();
   if (val === "") {
@@ -87,3 +95,4 @@ function ApiGetWeatherControl() {
     );
   }
 }
+
