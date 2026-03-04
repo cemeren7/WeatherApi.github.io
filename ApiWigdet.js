@@ -38,6 +38,7 @@ valapicity.addEventListener("keydown", (e) => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", ()=> {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Delete") {
     widget.src = "";
@@ -50,6 +51,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     livebtn.click();
   }
+}); 
 });
 
 function valcontrol() {
@@ -95,6 +97,7 @@ function ApiGetWeatherControl() {
     );
   }
 }
+
 
 
 
