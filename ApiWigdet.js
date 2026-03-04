@@ -4,7 +4,6 @@ const widget = document.querySelector("#ApiWigdetWeather");
 const btndrk = document.querySelector("#btndark");
 const toastlive = document.querySelector("#liveToast");
 const livebtn = document.querySelector("#livetoastbtn");
-
 setTimeout(() => {
   const t = new bootstrap.Toast(toastlive, {
     autohide: false,
@@ -103,3 +102,4 @@ function ApiGetWeatherControl() {
     );
   }
 }
+
