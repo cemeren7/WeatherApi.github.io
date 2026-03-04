@@ -10,7 +10,7 @@ setTimeout(() => {
     autohide: false,
   });
   t.show();
-},2000);
+}, 2000);
 
 let jsondata = {};
 fetch("weatherData.json")
@@ -25,12 +25,17 @@ document.addEventListener("DOMContentLoaded", ControlTheme);
 valapicity.addEventListener("keyup", valcontrol);
 btnapi.addEventListener("click", ApiGetWeatherControl);
 btndrk.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  localStorage.setItem("theme","dark");
+  if (!document.body.classList.contains("dark")) {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.body.classList.remove("dark");
+    localStorage.setItem("theme", "default");
+  }
 });
 valapicity.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-     btnapi.click()
+    btnapi.click();
   }
   if (e.key === "Delete") {
     widget.src = "";
@@ -38,21 +43,21 @@ valapicity.addEventListener("keydown", (e) => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", ()=> {
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Delete") {
-    widget.src = "";
-    valapicity.value = "";
-    valcontrol();
-  }
-  if (e.ctrlKey && e.key.toUpperCase() === "D") {
-    btndrk.click();
-    e.preventDefault();
-  }
-  if (e.key === "Escape") {
-    livebtn.click();
-  }
-}); 
+document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Delete") {
+      widget.src = "";
+      valapicity.value = "";
+      valcontrol();
+    }
+    if (e.ctrlKey && e.key.toUpperCase() === "D") {
+      btndrk.click();
+      e.preventDefault();
+    }
+    if (e.key === "Escape") {
+      livebtn.click();
+    }
+  });
 });
 
 function valcontrol() {
@@ -64,10 +69,10 @@ function valcontrol() {
   }
 }
 
-function ControlTheme(){
-  if(localStorage.getItem("theme") === "dark"){
-     document.body.classList.toggle("dark"); 
-  } 
+function ControlTheme() {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.toggle("dark");
+  }
 }
 
 function ApiGetWeatherControl() {
@@ -79,7 +84,7 @@ function ApiGetWeatherControl() {
 
   try {
     const cityEntry = Object.values(jsondata).find(
-      (c) => c.name.toLowerCase() === val
+      (c) => c.name.toLowerCase() === val,
     );
 
     if (!cityEntry) {
@@ -94,13 +99,7 @@ function ApiGetWeatherControl() {
     widget.src = srcnew;
   } catch (err) {
     alert(
-      `Hava Durumu Bilgisi Çekilirken Hata Oluştu. Hata Mesajı: ${err.message}`
+      `Hava Durumu Bilgisi Çekilirken Hata Oluştu. Hata Mesajı: ${err.message}`,
     );
   }
 }
-
-
-
-
-
-
