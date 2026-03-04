@@ -38,7 +38,7 @@ valapicity.addEventListener("keydown", (e) => {
   }
 });
 
-document.body.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (e) => {
   if (e.key === "Delete") {
     widget.src = "";
     valapicity.value = "";
@@ -95,5 +95,6 @@ function ApiGetWeatherControl() {
     );
   }
 }
+
 
 
