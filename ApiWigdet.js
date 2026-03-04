@@ -45,8 +45,9 @@ document.addEventListener("keydown", (e) => {
     valapicity.value = "";
     valcontrol();
   }
-  if (e.key === "Control" && e.key.toUpperCase() === "D") {
+  if (e.ctrlKey && e.key.toUpperCase() === "D") {
     btndrk.click();
+    e.preventDefault();
   }
   if (e.key === "Escape") {
     livebtn.click();
@@ -97,6 +98,7 @@ function ApiGetWeatherControl() {
     );
   }
 }
+
 
 
 
